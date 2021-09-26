@@ -8,12 +8,14 @@ public class homeWork_1 {
         compareNumbers();
     }
 
+    // Задание № 1
     public static void printThreeWords(){
         System.out.println("Orange");
         System.out.println("Banana");
         System.out.println("Apple");
-
     }
+
+    // Задание № 2
     public static void checkSumSing(){
         int a = 10;
         int b = 20;
@@ -25,6 +27,8 @@ public class homeWork_1 {
             System.out.println("Сумма отрицательная");
         }
     }
+
+    // Задание № 3
     public static void printColor(){
         int value = 60;
 
@@ -37,6 +41,7 @@ public class homeWork_1 {
         }
     }
 
+    // Задание № 4
     public static void compareNumbers() {
         int a = 15;
         int b = 32;
