@@ -44,17 +44,27 @@ public class homeWork_4 {
     }
 
     public static boolean checkWin(char element){
-        for (int i = 0; i < SIZE; i++) {
-            if((map[i][0] == element && map[i][1] == element && map[i][2] == element) ||
-                    (map[0][i] == element && map[1][i] == element && map[2][i] == element)){
-                return true;
+        // Проверка столбцов и линий.
+        boolean column, line, right, left;
+        column = true;
+        line = true;
+        for (int col = 0; col < SIZE; col++) {
+            for (int lin = 0; lin < SIZE; lin++) {
+                column = column & (map[col][lin] == element);
+                line = line & (map[lin][col] == element);
             }
-            if((map[0][0] == element && map[1][1] == element && map[2][2] == element) ||
-                    (map[2][0] == element && map[1][1] == element && map[0][2] == element)){
-                return true;
-            }
+            if(column || line) return true;
         }
-        return false;
+        // Проверка диагоналей.
+        right = true;
+        left = true;
+        for (int i = 0; i < SIZE; i++) {
+            right = right & (map[i][i] == element);
+            left = left & (map[SIZE - i - 1][i] == element);
+        }
+            if(right || left) return true;
+
+            return false;
     }
 
     public static boolean isMapFull(){
