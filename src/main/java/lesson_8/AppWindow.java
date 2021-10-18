@@ -10,22 +10,27 @@ public class AppWindow extends JFrame {
     private JTextField textField;
 
     public AppWindow(){
-        randomNumber = (int)(Math.random() * 10) + 1;
 
-        setTitle("Guess the number"); // Название окна.
-        setBounds(600, 300, 600, 140); //Отступ от края и размер окна.
-        setDefaultCloseOperation(EXIT_ON_CLOSE); //Закрытие окна.
-        setResizable(false); //Запрет на изменение размера окна.
+        setRandomNumber();
+
+        setTitle("Guess the number");
+        setBounds(600, 300, 600, 140);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
 
         textField = new JTextField();
         add(textField, BorderLayout.NORTH);
 
         textField.setText("Программа загадала число от 1 до 10.");
-        textField.setEditable(false); // Запрет на ручной ввод текста
-        textField.setHorizontalAlignment(SwingConstants.CENTER); // Центрирование текста.
+        textField.setEditable(false);
+        textField.setHorizontalAlignment(SwingConstants.CENTER);
 
         Font font = new Font("Arial", Font.PLAIN, 18);
         textField.setFont(font);
+
+        JButton resetButton = new JButton("Рестарт игры");
+        add(resetButton, BorderLayout.SOUTH);
+        resetButton.setFont(font);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 10));
         add(buttonPanel, BorderLayout.CENTER);
@@ -43,9 +48,17 @@ public class AppWindow extends JFrame {
             });
         }
 
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                restartGames();
+            }
+        });
+
         setVisible(true);
     }
 
+            // Метод проверки совпадений загаданного и введённого игроком...
     public void tryToAnswer(int answer){
         if(answer == randomNumber){
             textField.setText("Вы победили! Ответ: " + randomNumber);
@@ -54,5 +67,16 @@ public class AppWindow extends JFrame {
         } else {
             textField.setText("Не угадали! Загаданное число больше.");
         }
+    }
+
+            // Метод рестарта игры.
+    public void restartGames(){
+        textField.setText("Игра началась");
+        setRandomNumber();
+    }
+
+            // Метод рандом...
+    public void setRandomNumber(){
+        randomNumber = (int)(Math.random() * 10) + 1;
     }
 }
